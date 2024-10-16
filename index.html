@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peddy Shop</title>
+
+    <!-- google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- tailwind css & DaisyUI Links -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/e7a37b3213.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Tailwind CSS Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#131313",
+              secondary: "#0E7A81",
+            },
+            fontFamily: {
+              Lato: "Lato",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .active {
+        border-radius: 120px;
+        background-color: #0e7a811a;
+        border: 1.5px solid #0e7a81;
+      }
+    </style>
+  </head>
+  <body class="font-Lato m-0 p-0 box-border">
+    <header>
+      <nav
+        class="flex w-11/12 mx-auto justify-between items-center my-5">
+        <div class="flex items-center">
+          <img src="./images/logo.webp" alt="" />
+          <h3
+            class="font-black text-primary text-2xl md:text-3xl leading-9 md:ml-3 ml-2">
+            Peddy
+          </h3>
+        </div>
+
+        <div
+          class="flex items-center justify-center gap-3 md:gap-8 opacity-70 text-primary font-normal leading-5 md:mr-28">
+          <p><a href="#">Home</a></p>
+          <p><a href="#">Shop</a></p>
+          <p><a href="#">Contact</a></p>
+        </div>
+
+        <div
+          class="md:w-14 md:h-14 w-11 h-11 border border-solid rounded-full flex items-center justify-center text-center border-[#0E7A8133]">
+          <i class="fa-regular fa-user md:text-lg"></i>
+        </div>
+      </nav>
+
+      <!-- banner section  -->
+      <div class="banner text-center container px-5 mx-auto">
+        <h5 class="md:text-2xl hidden md:block text-lg font-bold text-[#13131399]">
+          Bringing Families Together ❤️‍🔥
+        </h5>
+        <h1 class="mb-5 md:text-7xl text-3xl font-black text-primary md:leading-[88px]">
+          Your Path to Adoption<br/>Starts Here
+        </h1>
+        <p
+          class="mb-6 md:text-base text-sm text-primary leading-6 font-normal max-w-[752px] mx-auto px-3"
+        >
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a.
+        </p>
+
+        <button
+          class="view-more text-xl font-bold text-white leading-6 px-8 py-4 bg-secondary rounded-xl"
+        >
+          <a href="#main-section">View More</a>
+        </button>
+
+        <div class="flex justify-center ">
+          <img src="./images/pet.webp" alt="" />
+        </div>
+      </div>
+    </header>
+
+    <main class="container px-5 mx-auto" id="main-section">
+      <!-- adopt section -->
+      <section class="text-center">
+        <h3 class="text-[40px] font-black leading-[40px] mb-5">
+          Adopt Your Best Friend
+        </h3>
+        <p
+          class="mb-8 text-base text-[#131313B3] leading-6 font-normal max-w-[636px] mx-auto px-3"
+        >
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a.
+        </p>
+      </section>
+      <!-- categories btn section -->
+
+      <section
+        id="categories"
+        class="grid md:grid-cols-4 grid-cols-2 md:gap-7 gap-5 justify-items-center"
+      ></section>
+      <!-- categories btn section -->
+
+      <section class="flex justify-between items-center mt-8 mb-8">
+        <h4 class="md:text-2xl text-xl font-black leading-[29px] text-primary">
+          Best Deal For you
+        </h4>
+        <button onclick="sortShow()"
+          class="text-xl font-bold text-white leading-6 md:px-8 py-3 px-6 md:py-4 bg-secondary rounded-xl" id="sort-btn"
+        >
+          Sort by Price
+        </button>
+      </section>
+      <div class="flex justify-center items-center h-[100px] rounded-xl md:h-[360px] hidden bg-[#13131308] " id="spinner">
+        <span
+          class="loading loading-spinner loading-lg h-12 w-12"  
+        ></span>
+      </div>
+
+      <!-- all post section  -->
+      <section class="grid lg:grid-cols-4 gap-6 " id="section-to-hide">
+        <!-- all pet data -->
+
+        <div id="petsContainer" class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3 gap-6 "></div>
+
+        <div
+          class="border border-solid border-[#1313131A] rounded-xl lg:col-span-1"
+        >
+          <div class="grid grid-cols-2 gap-5 p-4 md:p-5" id="likedPet"></div>
+        </div>
+      </section>
+
+      <!-- modal part -->
+    <button
+    id="showModalData"
+    class="btn hidden"
+    onclick="my_modal_5.showModal()"
+    ></button>
+  <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <div id="modal-content"></div>
+      <div class="modal-action">
+        <form method="dialog" class="w-full text-center">
+          <!-- if there is a button in form, it will close the modal -->
+          <button
+            class="py-3 border text-lg border-solid border-[#0E7A8133] rounded-lg w-full bg-[#0E7A811A] font-bold text-secondary"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+  <!-- modal 2  -->
+   
+    <dialog id="my_modal_1" class="modal">
+      <div class="modal-box flex flex-col justify-center items-center">
+      
+      <img src="./images/handshake.png" class="object-cover w-28" alt="">
+      <h1 class="text-5xl text-black font-extrabold">Congratulation</h1>       
+      <p id="countdown" class="mt-7 mb-5 text-4xl font-bold text-primary">3</p>
+      
+      </div>
+    </dialog>
+
+    </main>
+    <footer class="bg-primary mt-12">
+      <footer class="footer w-11/12 mx-auto text-base-content p-8 md:p-10 flex md:flex-row flex-col justify-between items-start">
+        <nav class="text-[#FFFFFFE6]">
+          <div class="flex items-center mb-1">
+            <img src="./images/logo.webp" alt="" />
+            <h3
+              class="font-black text-white text-2xl md:text-3xl leading-9 md:ml-3 ml-2"
+            >
+              Peddy
+            </h3>
+          </div>
+          <p>Location: av. Washington 165, NY CA 54003</p> 
+          <p>Phone: +31 85 964 47 25</p> 
+          <p>Email: info@yourdomain.com</p> 
+          <p>Openings hours: 9.00 AM - 5.00 PM</p> 
+          <div class="flex gap-4 items-center text-2xl">
+            <i class="fa-brands fa-facebook " style="color: #006aff;"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+            <i class="fa-brands fa-youtube" style="color: #fa1100;"></i>
+            <img src="https://img.icons8.com/?size=48&id=Xy10Jcu1L2Su&format=png" class="h-8" alt="">
+          </div>
+        </nav>
+        <nav class="text-[#FFFFFF99]">
+          <h6 class="footer-title text-white">Useful Links</h6>
+          <a class="link link-hover">Home</a>
+          <a class="link link-hover">About Us </a>
+          <a class="link link-hover">Animals </a>
+          <a class="link link-hover">Foundation</a>
+          <a class="link link-hover">Contact</a>
+        </nav>
+   
+        <form>
+          <h6 class="footer-title text-white">Drop a Message</h6>
+          <fieldset class="form-control md:w-[240px] w-full">
+        
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="input bg-[#FFFFFF0D] text-white" />
+              <button class="text-xl font-bold text-white leading-6 px-8 py-4 bg-secondary rounded-xl mt-4">Subscribe</button>
+            
+          </fieldset>
+        </form>
+      </footer>
+    </footer>
+    
+    <script src="./js/index.js"></script>
+    <script src="./js/details.js"></script>
+    
+  </body>
+</html>
